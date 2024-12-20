@@ -1,6 +1,7 @@
 import 'package:agp/Home%20Page/Today%20Visit/Appointment_list.dart';
 import 'package:agp/Home%20Page/Today%20Visit/today_visit_list.dart';
 import 'package:agp/Home%20Page/meeting_request.dart';
+import 'package:agp/Home%20Page/reports_page.dart';
 import 'package:flutter/material.dart';
 
 class TodayVisitScreen extends StatefulWidget {
@@ -188,10 +189,8 @@ class _TodayVisitScreenState extends State<TodayVisitScreen>
             IconButton(
                 icon: const Icon(Icons.add),
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const Taskpage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ReportsPage()));
                 }),
             IconButton(
                 icon: const Icon(Icons.list),
