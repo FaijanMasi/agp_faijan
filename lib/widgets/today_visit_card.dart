@@ -126,7 +126,7 @@ class TodayVisitCard extends StatelessWidget {
                         Row(
                           children: [
                             const Icon(Icons.access_time,
-                                size: 17, color: Colors.grey),
+                                size: 17, color: Color(0xff27458f)),
                             const SizedBox(width: 6),
                             Text(
                               time,
@@ -144,13 +144,13 @@ class TodayVisitCard extends StatelessWidget {
                     Row(
                       children: [
                         const Icon(Icons.email_outlined,
-                            color: Colors.grey, size: 17),
+                            color: Color(0xff27458f), size: 17),
                         const SizedBox(width: 6),
                         Text(
                           email,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 15,
-                            color: Colors.grey.shade800,
+                            color: Colors.black,
                           ),
                         ),
                         const Spacer(),
@@ -166,15 +166,15 @@ class TodayVisitCard extends StatelessWidget {
                     Row(
                       children: [
                         const Icon(Icons.apartment,
-                            size: 17, color: Colors.grey),
+                            size: 17, color: Color(0xff27458f)),
                         const SizedBox(width: 6),
                         Text(
                           companyName,
                           maxLines: 1,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             overflow: TextOverflow.ellipsis,
-                            color: Colors.grey.shade800,
+                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -190,7 +190,7 @@ class TodayVisitCard extends StatelessWidget {
                             const Icon(
                               Icons.phone,
                               size: 17,
-                              color: Colors.grey,
+                              color: Color(0xff27458f),
                             ),
                             const SizedBox(width: 6),
                             Column(
@@ -198,9 +198,9 @@ class TodayVisitCard extends StatelessWidget {
                                 Text(
                                   phoneNumber,
                                   textAlign: TextAlign.start,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
-                                    color: Colors.grey.shade800,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ],
@@ -215,32 +215,38 @@ class TodayVisitCard extends StatelessWidget {
                           Icon(
                             _getDateIconFromString(dateicon),
                             size: 17,
-                            color: Colors.grey,
+                            color: Color(0xff27458f),
                           ),
                         if (dateasText != null)
                           Text(
                             dateasText!,
                             textAlign: TextAlign.start,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
-                              color: Colors.grey.shade800,
+                              color: Colors.black,
                             ),
                           ),
                         const Spacer(),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              isApproved
-                                  ? Icons.check_circle_outline
-                                  : Icons.cancel_outlined,
-                              color: isApproved ? Colors.green : Colors.red,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              isApproved ? 'Approved' : 'Rejected',
-                              style: TextStyle(
-                                color: isApproved ? Colors.green : Colors.red,
-                                fontWeight: FontWeight.bold,
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 1.0,
+                                      color: isApproved
+                                          ? Colors.green
+                                          : Colors.red),
+                                  borderRadius: BorderRadius.circular(4)),
+                              width: 70,
+                              height: 25,
+                              child: Text(
+                                isApproved ? 'Approved' : 'Rejected',
+                                style: TextStyle(
+                                  color: isApproved ? Colors.green : Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ],

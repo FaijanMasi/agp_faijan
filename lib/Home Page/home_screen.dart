@@ -1,8 +1,12 @@
+import 'package:agp/Home%20Page/Profile_Page.dart';
 import 'package:agp/Home%20Page/Today%20Visit/Appointment_list.dart';
+import 'package:agp/Home%20Page/Today%20Visit/Pending_Page.dart';
 import 'package:agp/Home%20Page/Today%20Visit/today_visit_list.dart';
 import 'package:agp/Home%20Page/meeting_request.dart';
 import 'package:agp/Home%20Page/reports_page.dart';
+import 'package:agp/utils/image_url.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class TodayVisitScreen extends StatefulWidget {
   const TodayVisitScreen({super.key});
@@ -19,9 +23,9 @@ class _TodayVisitScreenState extends State<TodayVisitScreen>
   bool _isSearchExpanded = false;
   final TextEditingController _searchController = TextEditingController();
 
-  final List<Widget> _screens = [
-    const MeetingRequest(),
-  ];
+  // final List<Widget> _screens = [
+  //   const MeetingRequest(),
+  // ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -131,7 +135,7 @@ class _TodayVisitScreenState extends State<TodayVisitScreen>
           // VisitTab(tabNumber: 1),
           TodayVisitList(),
           AppointmentList(),
-          VisitTab(tabNumber: 3),
+          PendingPage(),
         ],
       ),
       // if (_currentIndex == 0) _screens[_currentIndex],
@@ -167,19 +171,30 @@ class _TodayVisitScreenState extends State<TodayVisitScreen>
       //   ],
       // ),
       bottomNavigationBar: BottomAppBar(
-        height: 54,
-        color: Colors.black,
+        height: 60,
+        color: Colors.white,
         shape: const CircularNotchedRectangle(),
-        notchMargin: 8.0,
+        notchMargin: 6.0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
-              icon: const Icon(Icons.home),
+              iconSize: 20,
+              icon: SvgPicture.asset(
+                _selectedIndex == 0 ? FillHome : Home,
+                color:
+                    _selectedIndex == 0 ? const Color(0xff27458f) : Colors.grey,
+              ),
               onPressed: () => _onItemTapped(0),
             ),
             IconButton(
-                icon: const Icon(Icons.send),
+                iconSize: 20,
+                icon: SvgPicture.asset(
+                  _selectedIndex == 1 ? SendIcon : FillSendIcon,
+                  color: _selectedIndex == 1
+                      ? const Color(0xff27458f)
+                      : Colors.grey,
+                ),
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -187,26 +202,39 @@ class _TodayVisitScreenState extends State<TodayVisitScreen>
                           builder: (context) => const MeetingRequest()));
                 }),
             IconButton(
-                icon: const Icon(Icons.add),
+                iconSize: 20,
+                icon: SvgPicture.asset(
+                  _selectedIndex == 2 ? FillAddIcon : AddIcon,
+                  color: _selectedIndex == 2
+                      ? const Color(0xff27458f)
+                      : Colors.grey,
+                ),
+                onPressed: () {}),
+            IconButton(
+                iconSize: 20,
+                icon: SvgPicture.asset(
+                  _selectedIndex == 3 ? FillAddIcon : ReportIcon,
+                  color: _selectedIndex == 3
+                      ? const Color(0xff27458f)
+                      : Colors.grey,
+                ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ReportsPage()));
                 }),
             IconButton(
-                icon: const Icon(Icons.list),
+                iconSize: 20,
+                icon: SvgPicture.asset(
+                  _selectedIndex == 3 ? FillAddIcon : ManIcon,
+                  color: _selectedIndex == 3
+                      ? const Color(0xff27458f)
+                      : Colors.grey,
+                ),
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const Expensepage()));
-                }),
-            IconButton(
-                icon: const Icon(Icons.man),
-                onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const Leavepage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePage()));
                 }),
           ],
         ),
